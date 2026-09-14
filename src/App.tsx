@@ -4,9 +4,9 @@ function App() {
   const [count, setCount] = useState(0);
 
   function verMenor() {
-    if (count < 0) {
-      alert("Não pode ser menor que zero!");
+    if (count <= 0) {
       setCount(0);
+      alert("Não pode ser menor que zero!");
     } else {
       setCount(count - 1);
     }
