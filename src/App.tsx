@@ -43,7 +43,7 @@ function App() {
       </button>
 
       <h1>{count}</h1>
-      {hide && <h1>Não pode ser menor que zero!</h1>}
+      {hide && <h1 style={{ color: "red" }}>Não pode ser menor que zero!</h1>}
     </>
   );
 }
