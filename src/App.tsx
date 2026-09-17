@@ -2,11 +2,13 @@ import { useState } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [hide, setHide] = useState(false);
 
   function verMenor() {
     if (count <= 0) {
       setCount(0);
-      alert("Não pode ser menor que zero!");
+      setHide(true);
+      //alert("Não pode ser menor que zero!");
     } else {
       setCount(count - 1);
     }
@@ -16,11 +18,32 @@ function App() {
     <>
       <p>Ola mundo!</p>
 
-      <button onClick={() => setCount(count + 1)}>Adicionar</button>
-      <button onClick={() => verMenor()}>Diminuir</button>
-      <button onClick={() => setCount(0)}>Resetar</button>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+          setHide(false);
+        }}
+      >
+        Adicionar
+      </button>
+      <button
+        onClick={() => {
+          verMenor();
+        }}
+      >
+        Diminuir
+      </button>
+      <button
+        onClick={() => {
+          setCount(0);
+          setHide(false);
+        }}
+      >
+        Resetar
+      </button>
 
       <h1>{count}</h1>
+      {hide && <h1>Não pode ser menor que zero!</h1>}
     </>
   );
 }
