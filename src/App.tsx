@@ -1,49 +1,40 @@
+// Trabalhando com lists
+
 import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [hide, setHide] = useState(false);
-
-  function verMenor() {
-    if (count <= 0) {
-      setCount(0);
-      setHide(true);
-      //alert("Não pode ser menor que zero!");
-    } else {
-      setCount(count - 1);
-    }
-  }
+  const [value, setValue] = useState("");
+  const [list, setList] = useState([
+    { id: "1", label: "Fazer café" },
+    { id: "2", label: "Fazer almoço" },
+    { id: "3", label: "Fazer janta" },
+  ]);
 
   return (
     <>
-      <p>Ola mundo!</p>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
 
       <button
         onClick={() => {
-          setCount(count + 1);
-          setHide(false);
+          setList([
+            ...list,
+            { id: (list.length + 1).toString(), label: value },
+          ]);
+          setValue("");
         }}
       >
         Adicionar
       </button>
-      <button
-        onClick={() => {
-          verMenor();
-        }}
-      >
-        Diminuir
-      </button>
-      <button
-        onClick={() => {
-          setCount(0);
-          setHide(false);
-        }}
-      >
-        Resetar
-      </button>
 
-      <h1>{count}</h1>
-      {hide && <h1 style={{ color: "red" }}>Não pode ser menor que zero!</h1>}
+      <ol>
+        {list.map((listItem) => (
+          <li key={listItem.id}>{listItem.label}</li>
+        ))}
+      </ol>
     </>
   );
 }
